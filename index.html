@@ -1350,7 +1350,7 @@ const pSobre = Array.from({length:50},()=>({
   requestAnimationFrame(loopSobre);
 })();
 // FECHA DEL CASAMIENTO — cambiá este valor · línea ~500
-const fechaEvento=new Date('2025-06-14T18:00:00');
+const fechaEvento=new Date('2026-06-14T18:00:00');
 function actualizarCR(){
   const diff=fechaEvento-new Date();
   if(diff<=0){['cd-dias','cd-hs','cd-min','cd-seg'].forEach(id=>document.getElementById(id).textContent='00');return}
