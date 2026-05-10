@@ -81,9 +81,9 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
   content:'';position:absolute;inset:0;z-index:0;
   background:linear-gradient(
     180deg,
-    rgba(0,0,0,0.30) 0%,
-    rgba(13,11,8,0.65) 55%,
-    rgba(8,6,3,0.95) 100%
+    rgba(0,0,0,0.55) 0%,
+    rgba(13,11,8,0.75) 55%,
+    rgba(8,6,3,0.97) 100%
   );
 }
 .hero>*{position:relative;z-index:1}
@@ -116,8 +116,9 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 
 .hero-pre{
   font-size:.65rem;font-weight:500;letter-spacing:6px;
-  text-transform:uppercase;color:var(--g);
+  text-transform:uppercase;color:#fff !important;
   margin-bottom:1.2rem;display:block;
+  text-shadow:0 1px 10px rgba(0,0,0,1),0 2px 20px rgba(0,0,0,.8);
 }
 
 /* ══════════════════════════════════════
@@ -127,9 +128,9 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(3rem,13vw,5.5rem);
   font-weight:300;font-style:italic;
-  color:var(--white);line-height:1;
+  color:#fff !important;line-height:1;
   margin-bottom:.6rem;
-  text-shadow:0 2px 30px rgba(201,150,62,.4);
+  text-shadow:0 2px 30px rgba(201,150,62,.4),0 2px 14px rgba(0,0,0,1);
   animation:nombres-in 1.2s ease both;
 }
 @keyframes nombres-in{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
@@ -137,15 +138,16 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 .hero-amp{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(2rem,8vw,3.5rem);
-  font-style:italic;color:var(--g);
+  font-style:italic;color:#fff !important;
   display:block;line-height:1;margin-bottom:.6rem;
+  text-shadow:0 2px 14px rgba(0,0,0,1);
 }
 
 .hero-fecha-tag{
   font-size:.75rem;font-weight:500;letter-spacing:4px;
-  text-transform:uppercase;color:var(--white);
-  background:var(--box-bg);
-  border:1px solid var(--box-border);
+  text-transform:uppercase;color:#fff !important;
+  background:rgba(10,8,4,0.85);
+  border:1px solid rgba(201,150,62,0.35);
   border-radius:50px;padding:8px 24px;
   display:inline-block;margin-bottom:2.5rem;
 }
@@ -1038,7 +1040,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 
 <!-- ══════════════════════════════════════
   SECCIÓN 8 — SUGERIR CANCIÓN
-  Reemplazá NUMERODETELEFONO · línea ~363
+  Reemplazá 5492645234646 · línea ~363
 ══════════════════════════════════════ -->
 <section class="sec-wrap deep-bg">
   <span class="sec-title r">🎵 ¿Cuál es tu canción?</span>
@@ -1046,7 +1048,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
   <div class="cancion-box r d2">
     <p>¿Hay alguna canción que no puede faltar en nuestra fiesta? ¡Mandanos tu sugerencia!</p>
     <a class="btn-accion"
-       href="https://wa.me/NUMERODETELEFONO?text=¡Hola!%20Mi%20sugerencia%20de%20canción%20para%20su%20boda%20es:%20"
+       href="https://wa.me/5492645234646?text=¡Hola!%20Mi%20sugerencia%20de%20canción%20para%20su%20boda%20es:%20"
        target="_blank">🎤 Sugerir canción</a>
   </div>
 </section>
@@ -1147,7 +1149,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 
 <!-- ══════════════════════════════════════
   SECCIÓN 11 — CONFIRMACIÓN
-  Reemplazá NUMERODETELEFONO · línea ~415
+  Reemplazá 5492645234646 · línea ~415
 ══════════════════════════════════════ -->
 <section class="sec-confirm">
   <span class="confirm-emoji r">💍</span>
@@ -1157,7 +1159,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
   </span>
 
   <a class="btn-wa r d3"
-     href="https://wa.me/NUMERODETELEFONO?text=¡Hola%20Sofía%20y%20Martín!%20Confirmo%20mi%20asistencia%20a%20su%20boda%20💍"
+     href="https://wa.me/5492645234646?text=¡Hola%20Sofía%20y%20Martín!%20Confirmo%20mi%20asistencia%20a%20su%20boda%20💍"
      target="_blank">
     <svg class="wa-ico" viewBox="0 0 32 32" fill="none">
       <path d="M16 3C8.82 3 3 8.82 3 16c0 2.3.62 4.5 1.7 6.4L3 29l6.8-1.78A13 13 0 0016 29c7.18 0 13-5.82 13-13S23.18 3 16 3z" fill="white" fill-opacity=".2"/>
@@ -1350,7 +1352,7 @@ const pSobre = Array.from({length:50},()=>({
   requestAnimationFrame(loopSobre);
 })();
 // FECHA DEL CASAMIENTO — cambiá este valor · línea ~500
-const fechaEvento=new Date('2026-06-14T18:00:00');
+const fechaEvento=new Date('2025-06-14T18:00:00');
 function actualizarCR(){
   const diff=fechaEvento-new Date();
   if(diff<=0){['cd-dias','cd-hs','cd-min','cd-seg'].forEach(id=>document.getElementById(id).textContent='00');return}
