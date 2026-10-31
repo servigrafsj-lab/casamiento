@@ -7,6 +7,7 @@
   TÍTULO — cambiá los nombres (línea 5)
 ══════════════════════════════════════ -->
 <title>Sofía & Martín · Casamiento 💍</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════════
@@ -29,7 +30,7 @@
    Borgoña y oro rosado:
      --p:#800020; --g:#e8c4a0; --dark:#0d0508; --cream:#fff5f0;
      --box-bg:rgba(13,5,8,0.82); --box-border:rgba(232,196,160,0.35);
-══════════════════════════════════════════════════════ -->
+══════════════════════════════════════════════════════ */
 :root{
   --p:#c9963e;
   --g:#f0d080;
@@ -126,7 +127,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 ══════════════════════════════════════ */
 .hero-nombres{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(3rem,13vw,5.5rem);
+  font-size:clamp(2.5rem,11vw,5rem);white-space:nowrap;
   font-weight:300;font-style:italic;
   color:#fff !important;line-height:1;
   margin-bottom:.6rem;
@@ -137,14 +138,14 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
 
 .hero-amp{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2rem,8vw,3.5rem);
-  font-style:italic;color:#fff !important;
-  display:block;line-height:1;margin-bottom:.6rem;
+  font-size:.8em;
+  font-style:italic;color:#f0d080 !important;
+  display:inline-block;line-height:1;margin:0 .08em;
   text-shadow:0 2px 14px rgba(0,0,0,1);
 }
 
 .hero-fecha-tag{
-  font-size:.75rem;font-weight:500;letter-spacing:4px;
+  font-size:.75rem;font-weight:500;letter-spacing:4px;white-space:nowrap;
   text-transform:uppercase;color:#fff !important;
   background:rgba(10,8,4,0.85);
   border:1px solid rgba(201,150,62,0.35);
@@ -605,7 +606,7 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
       font-size:1rem;font-style:italic;
       color:rgba(240,208,128,.6);
       margin-bottom:2.5rem;letter-spacing:2px;
-    ">14 · 06 · 2025</p>
+    ">12 · 06 · 2027</p>
 
     <!-- botón toque -->
     <div id="sobre-hint" style="animation:hint-pulse 1.8s ease-in-out infinite;">
@@ -650,12 +651,10 @@ canvas{position:fixed;inset:0;z-index:9998;pointer-events:none}
   <span class="hero-pre r d1">Con inmensa alegría les anunciamos</span>
 
   <!-- NOMBRES DE LOS NOVIOS · línea ~178 -->
-  <h1 class="hero-nombres r d2">Sofía</h1>
-  <span class="hero-amp r d2">&</span>
-  <h1 class="hero-nombres r d2">Martín</h1>
+  <h1 class="hero-nombres r d2">Sofía <span class="hero-amp">&amp;</span> Martín</h1>
 
   <!-- FECHA DEL CASAMIENTO · línea ~183 -->
-  <div class="hero-fecha-tag r d3">Sábado · 14 de Junio de 2025</div>
+  <div class="hero-fecha-tag r d3">Sábado 12 · 06 · 2027</div>
 
   <p class="scroll-hint r d4">✦ deslizá para ver ✦</p>
 </section>
@@ -1199,8 +1198,8 @@ const flotantes=Array.from({length:100},(_,i)=>({
   x:Math.random()*window.innerWidth,
   y:Math.random()*window.innerHeight,
   r:Math.random()*1.8+.2,
-  dx:(Math.random()-.5)*.22,
-  dy:(Math.random()-.5)*.22,
+  dx:(Math.random()-.5)*.25,
+  dy:-(Math.random()*.45+.12),
   col:i<50?claros[Math.floor(Math.random()*claros.length)]:oscuros[Math.floor(Math.random()*oscuros.length)],
   a:Math.random()*.28+.07,
   phase:Math.random()*Math.PI*2,
@@ -1263,14 +1262,17 @@ let frame=0;
     const a=p.a*(.6+.4*Math.sin(frame*p.speed+p.phase));
     cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
     cx.fillStyle=p.col;cx.globalAlpha=a;cx.fill();
-    p.x+=p.dx;p.y+=p.dy;
-    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    // el polvo dorado sube despacio y se mece de costado
+    p.x+=p.dx+Math.sin(frame*.012+p.phase)*.25;p.y+=p.dy;
+    if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}if(p.y>H+4)p.y=-4;
   });
   estrellas.forEach(p=>{
+    p.y-=.12;p.x+=Math.sin(frame*.008+p.phase)*.12;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
     const a=p.maxA*(.5+.5*Math.sin(frame*p.speed+p.phase));
     if(a>.06)drawStar(p.x,p.y,p.r,a,p.col);
   });
   destellos.forEach(p=>{
+    p.y-=.08;if(p.y<-20){p.y=H+20;p.x=Math.random()*W;}
     const a=p.maxA*Math.pow(Math.abs(Math.sin(frame*p.speed+p.phase)),.5);
     if(a>.04){
       cx.save();cx.globalAlpha=a;
@@ -1286,6 +1288,7 @@ let frame=0;
     }
   });
   cruces.forEach(p=>{
+    p.y-=.1;p.x+=Math.sin(frame*.01+p.phase)*.1;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
     const a=p.maxA*(.4+.6*Math.abs(Math.sin(frame*p.speed+p.phase)));
     if(a>.06)drawCruz(p.x,p.y,p.r,a,p.col);
   });
@@ -1330,7 +1333,7 @@ const pSobre = Array.from({length:50},()=>({
   y:Math.random()*window.innerHeight,
   r:Math.random()*1.5+.3,
   dx:(Math.random()-.5)*.2,
-  dy:(Math.random()-.5)*.15,
+  dy:-(Math.random()*.4+.1),
   col:Math.random()>.5?'#f0d080':'#c9963e',
   a:Math.random()*.25+.06,
   phase:Math.random()*Math.PI*2,
@@ -1352,7 +1355,7 @@ const pSobre = Array.from({length:50},()=>({
   requestAnimationFrame(loopSobre);
 })();
 // FECHA DEL CASAMIENTO — cambiá este valor · línea ~500
-const fechaEvento=new Date('2025-06-14T18:00:00');
+const fechaEvento=new Date('2027-06-12T18:00:00');
 function actualizarCR(){
   const diff=fechaEvento-new Date();
   if(diff<=0){['cd-dias','cd-hs','cd-min','cd-seg'].forEach(id=>document.getElementById(id).textContent='00');return}
