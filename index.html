@@ -1197,11 +1197,11 @@ const oscuros=['#7a5010','#8b6914','#6b4d0c','#505070','#404060','#9a7218'];
 const flotantes=Array.from({length:100},(_,i)=>({
   x:Math.random()*window.innerWidth,
   y:Math.random()*window.innerHeight,
-  r:Math.random()*1.8+.2,
-  dx:(Math.random()-.5)*.25,
-  dy:-(Math.random()*.45+.12),
+  r:Math.random()*2.2+.8,
+  dx:(Math.random()-.5)*.6,
+  dy:-(Math.random()*1.1+.45),
   col:i<50?claros[Math.floor(Math.random()*claros.length)]:oscuros[Math.floor(Math.random()*oscuros.length)],
-  a:Math.random()*.28+.07,
+  a:Math.random()*.4+.22,
   phase:Math.random()*Math.PI*2,
   speed:Math.random()*.006+.002,
 }));
@@ -1263,16 +1263,16 @@ let frame=0;
     cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
     cx.fillStyle=p.col;cx.globalAlpha=a;cx.fill();
     // el polvo dorado sube despacio y se mece de costado
-    p.x+=p.dx+Math.sin(frame*.012+p.phase)*.25;p.y+=p.dy;
+    p.x+=p.dx+Math.sin(frame*.02+p.phase)*.7;p.y+=p.dy;
     if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}if(p.y>H+4)p.y=-4;
   });
   estrellas.forEach(p=>{
-    p.y-=.12;p.x+=Math.sin(frame*.008+p.phase)*.12;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+    p.y-=.45;p.x+=Math.sin(frame*.015+p.phase)*.35;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
     const a=p.maxA*(.5+.5*Math.sin(frame*p.speed+p.phase));
     if(a>.06)drawStar(p.x,p.y,p.r,a,p.col);
   });
   destellos.forEach(p=>{
-    p.y-=.08;if(p.y<-20){p.y=H+20;p.x=Math.random()*W;}
+    p.y-=.3;if(p.y<-20){p.y=H+20;p.x=Math.random()*W;}
     const a=p.maxA*Math.pow(Math.abs(Math.sin(frame*p.speed+p.phase)),.5);
     if(a>.04){
       cx.save();cx.globalAlpha=a;
@@ -1288,7 +1288,7 @@ let frame=0;
     }
   });
   cruces.forEach(p=>{
-    p.y-=.1;p.x+=Math.sin(frame*.01+p.phase)*.1;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+    p.y-=.4;p.x+=Math.sin(frame*.015+p.phase)*.3;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
     const a=p.maxA*(.4+.6*Math.abs(Math.sin(frame*p.speed+p.phase)));
     if(a>.06)drawCruz(p.x,p.y,p.r,a,p.col);
   });
@@ -1332,8 +1332,8 @@ const pSobre = Array.from({length:50},()=>({
   x:Math.random()*window.innerWidth,
   y:Math.random()*window.innerHeight,
   r:Math.random()*1.5+.3,
-  dx:(Math.random()-.5)*.2,
-  dy:-(Math.random()*.4+.1),
+  dx:(Math.random()-.5)*.5,
+  dy:-(Math.random()*1+.4),
   col:Math.random()>.5?'#f0d080':'#c9963e',
   a:Math.random()*.25+.06,
   phase:Math.random()*Math.PI*2,
